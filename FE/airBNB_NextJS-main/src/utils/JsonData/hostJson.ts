@@ -8,40 +8,40 @@ export interface Host {
     ngaySinh: string;
     moTa: string;
     status: "ACTIVE" | "INACTIVE";
-  }
+}
 
 export const host: Host[] = [
     {
         maChuPhong: "CP1",
-        avatar: "",
-        tenChuPhong: "Nguyễn Văn A",
+        avatar: "https://photo.znews.vn/w660/Uploaded/sgtnrn/2024_04_14/ty_phu_682.jpg",
+        tenChuPhong: "Bill Gates",
         soDT: "0901234567",
-        email: "ngvana@gmail.com",
+        email: "gb1234@gmail.com",
         gioiTinh: true,
         ngaySinh: "12/08/2000",
-        moTa: "Chủ phòng siêu cấp",
+        moTa: "Chủ nhà siêu cấp là những người có kinh nghiệm, được đánh giá cao và cam kết mang lại kỳ nghỉ tuyệt vời cho khách.",
         status: "ACTIVE",
     },
     {
         maChuPhong: "CP2",
-        avatar: "",
-        tenChuPhong: "Trần Thị B",
+        avatar: "https://media.vov.vn/sites/default/files/styles/large/public/2023-11/1_8.jpeg",
+        tenChuPhong: "Lisa",
         soDT: "0937654321",
-        email: "tranthib@gmail.com",
-        gioiTinh: true,
+        email: "lisabp1@gmail.com",
+        gioiTinh: false,
         ngaySinh: "12/08/2000",
-        moTa: "Chủ phòng siêu cấp",
-        status: "INACTIVE",
+        moTa: "Tinh thần tổng thể, háo hức cho du lịch, tò mò, epicurean, networker và vĩnh viễn...",
+        status: "ACTIVE",
     },
     {
         maChuPhong: "CP3",
-        avatar: "",
-        tenChuPhong: "Lê Văn C",
+        avatar: "https://bsmedia.business-standard.com/_media/bs/img/article/2024-07/24/full/1721806332-4893.JPG?im=FeatureCrop,size=(826,465)",
+        tenChuPhong: "Elon Musk",
         soDT: "0987123456",
-        email: "levanc@gmail.com",
+        email: "musk100@gmail.com",
         gioiTinh: true,
         ngaySinh: "12/08/2000",
-        moTa: "Chủ phòng siêu cấp",
+        moTa: "chủ nhà siêu cấp",
         status: "ACTIVE",
     },
     {
@@ -52,8 +52,8 @@ export const host: Host[] = [
         email: "phamthid@gmail.com",
         gioiTinh: true,
         ngaySinh: "12/08/2000",
-        moTa: "Chủ phòng siêu cấp",
-        status: "INACTIVE",
+        moTa: "chủ nhà siêu cấp",
+        status: "ACTIVE",
     },
     {
         maChuPhong: "CP5",
@@ -63,7 +63,7 @@ export const host: Host[] = [
         email: "hoangvane@gmail.com",
         gioiTinh: true,
         ngaySinh: "12/08/2000",
-        moTa: "Chủ phòng siêu cấp",
+        moTa: "chủ nhà siêu cấp",
         status: "ACTIVE",
     },
 ];

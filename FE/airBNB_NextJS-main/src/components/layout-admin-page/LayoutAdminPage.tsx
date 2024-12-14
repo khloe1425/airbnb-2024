@@ -14,6 +14,7 @@ import {
   Menu,
   Modal,
   theme,
+  Image
 } from "antd";
 import Link from "next/link";
 import useCheckLogin from "@/custome-hook/useCheckLogin/useCheckLogin";
@@ -360,6 +361,21 @@ const LayoutAdminPage: React.FC<Props> = ({ children }) => {
               </Link>
               <Link
                 href={`/${locale}/admin`}
+                className="w-10 h-10 flex items-center justify-center"
+              >
+                <FontAwesomeIcon
+                  className={`${
+                    selectedKey === "admin"
+                      ? "!text-primary-100"
+                      : "!text-custome-gray-200"
+                  }`}
+                  size="lg"
+                  icon={faChartSimple}
+                />
+              </Link>
+              {/*  */}
+              {/* <Link
+                href={`/${locale}/admin`}
                 className="w-14 h-14 rounded-full border flex items-center justify-center"
               >
                 <FontAwesomeIcon
@@ -371,7 +387,30 @@ const LayoutAdminPage: React.FC<Props> = ({ children }) => {
                   size="xl"
                   icon={faChartSimple}
                 />
+              </Link> */}
+              <Link
+                href={`/${locale}`}
+                className="w-14 h-14 rounded-full flex items-center justify-center"
+              >
+                {/* <FontAwesomeIcon
+                  className={`${
+                    selectedKey === "admin"
+                      ? "!text-primary-100"
+                      : "!text-custome-gray-200"
+                  }`}
+                  size="xl"
+                  icon={faChartSimple}
+                /> */}
+                <Image
+                  src={"/images/logo.jpg"}
+                  alt="hinh anh"
+                  height="100%"
+                  width="100%"
+                  className="!object-cover"
+                  preview={false}
+                />
               </Link>
+              {/*  */}
               <Link
                 href={`/${locale}/admin/users`}
                 className="w-10 h-10 flex items-center justify-center"
@@ -398,6 +437,20 @@ const LayoutAdminPage: React.FC<Props> = ({ children }) => {
                   }`}
                   size="lg"
                   icon={faListCheck}
+                />
+              </Link>
+              <Link
+                href={`/${locale}/admin/hosts`}
+                className="w-10 h-10 flex items-center justify-center"
+              >
+                <FontAwesomeIcon
+                  className={`${
+                    selectedKey === "hosts"
+                      ? "!text-primary-100"
+                      : "!text-custome-gray-200"
+                  }`}
+                  size="lg"
+                  icon={faHotel}
                 />
               </Link>
             </div>

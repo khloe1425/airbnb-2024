@@ -15,7 +15,6 @@ import type { TableProps } from 'antd';
 import { createStyles } from "antd-style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-// import ModalViewUser from "@/components/modal-view-user/ModalViewUser";
 import { toSlugWithId } from "@/utils/method/method";
 import { useLocale } from "next-intl";
 import dayjs from 'dayjs';
@@ -144,7 +143,7 @@ const HostAdmin: React.FC = () => {
           <Image
             src={avatar === "" ? "/images/logo.jpg" : avatar}
             alt="hinh anh"
-            className="w-full h-full"
+            className="!w-[30px] !h-[30px] rounded-full object-cover"
           />
         </div>
       ),
@@ -461,7 +460,6 @@ const HostAdmin: React.FC = () => {
                 <p><strong>Giá tiền:</strong> {room.giaTien} USD</p>
                 <p className="line-clamp-2"><strong>Mô tả: </strong>{room.moTa}</p>
                 <Link
-                  // href={`/room-detail/${room.id}`}
                   href={`/${locale}/room/${toSlugWithId(room.tenPhong, room.id)}`}
                   className="text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out"
                 >

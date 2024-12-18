@@ -3,6 +3,11 @@ import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 import { host, Host } from "@/utils/JsonData/hostJson";
 import { phong, Room } from "@/utils/JsonData/roomJson";
+import { Image, Modal, Button, message, Input, Radio, Space } from "antd";
+import type { RadioChangeEvent } from 'antd';
+import useCheckLogin from "@/custome-hook/useCheckLogin/useCheckLogin";
+import { useLocale } from "next-intl";
+import { toSlugWithId } from "@/utils/method/method";
 
 type Props = {
   params: {
@@ -18,6 +23,11 @@ const ProfileHostPage = (props: Props) => {
   // const [roomJson, setRoomJson] = useState<Room[]>([]);
   const [roomJson, setRoomJson] = useState<Room[]>(phong.filter((room) => room.maChuPhong === maChuPhong));
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [value, setValue] = useState(1);
+
+  const { checkIsLogin } = useCheckLogin();
+  const locale = useLocale()
 
   const reviews = [
     "Nhà/phòng cho thuê hoàn toàn giống với ảnh và rất đẹp. Nó sạch sẽ và đẹp, và chủ nhà rất tốt bụng. Tôi cảm thấy như ở nhà khi ở Paris. Và con mèo thật dễ thương! Nếu tôi đến Paris lần sau, tôi muốn ở lại một lần nữa!",
@@ -53,6 +63,30 @@ const ProfileHostPage = (props: Props) => {
 
   const nextRoom = () => {
     if (currentIndex < totalRooms - 1) setCurrentIndex(currentIndex + 1);
+  };
+
+  const showModalWarning = () => {
+    const login = checkIsLogin()
+    if (login == true) {
+      setIsModalOpen(true);
+    }
+    else {
+      message.error("Vui lòng đăng nhập để thực hiện chức năng này")
+    }
+  };
+
+  const handleWarningOk = () => {
+    message.success("Báo cáo thành công")
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const onChange = (e: RadioChangeEvent) => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
   };
 
   return (
@@ -121,7 +155,9 @@ const ProfileHostPage = (props: Props) => {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: 16, width: 16, fill: 'currentcolor' }}>
                 <path d="M28 6H17V4a2 2 0 0 0-2-2H3v28h2V18h10v2a2 2 0 0 0 2 2h11.12a1 1 0 0 0 .84-1.28L27.04 14l1.92-6.72A1 1 0 0 0 28 6z" />
               </svg>
-              <Link className="font-bold underline text-black" href="#">Báo cáo hồ sơ này</Link>
+              <Button className="font-bold underline text-black !bg-transparent !border-none !shadow-none !p-0" onClick={showModalWarning}>
+                Báo cáo hồ sơ này
+              </Button>
             </div>
           </div>
         </div>
@@ -161,7 +197,7 @@ const ProfileHostPage = (props: Props) => {
               </li>
               <li className="w-full lg:w-1/2 pb-4 lg:pr-4">
                 <p className="flex items-center text-base">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: 30, width: 30, fill: 'var(--linaria-theme_palette-hof)', marginRight: '15px' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: 25, width: 25, fill: 'var(--linaria-theme_palette-hof)', marginRight: '15px' }}>
                     <path d="M13.7 13.93a4 4 0 0 1 5.28.6l.29.37 4.77 6.75a4 4 0 0 1 .6 3.34 4 4 0 0 1-4.5 2.91l-.4-.08-3.48-.93a1 1 0 0 0-.52 0l-3.47.93a4 4 0 0 1-2.94-.35l-.4-.25a4 4 0 0 1-1.2-5.2l.23-.37 4.77-6.75a4 4 0 0 1 .96-.97zm3.75 1.9a2 2 0 0 0-2.98.08l-.1.14-4.84 6.86a2 2 0 0 0 2.05 3.02l.17-.04 4-1.07a1 1 0 0 1 .5 0l3.97 1.06.15.04a2 2 0 0 0 2.13-2.97l-4.95-7.01zM27 12a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM5 12a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm22 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM5 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm6-10a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm10 0a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM11 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
                   </svg>
                   <span>Thú cưng: Một chú mèo hổ tên Titie</span>
@@ -182,7 +218,7 @@ const ProfileHostPage = (props: Props) => {
                 </p>
               </li>
             </ul>
-            <p>{hostJson?.moTa}</p>
+            <p className="pt-3">{hostJson?.moTa}</p>
             <hr className="border-gray-200 lg:px-6 px-4 my-10" />
           </section>
           {/* Sectino 2: slider đánh giá */}
@@ -266,10 +302,10 @@ const ProfileHostPage = (props: Props) => {
               <div className="mt-2 grid grid-cols-1 gap-4 transition-all duration-500">
                 {/* Hiển thị thông tin phòng */}
                 <div className="rounded-2xl space-y-4">
-                  <img
+                  <Image
                     src={currentRoom.hinhAnh || "/placeholder.jpg"}
                     alt={currentRoom.tenPhong}
-                    className="rounded-lg w-full h-64 object-cover"
+                    className="rounded-lg w-full !h-64 object-cover"
                   />
                   <div>
                     <h2 className="text-2xl font-bold">{currentRoom.tenPhong}</h2>
@@ -284,12 +320,12 @@ const ProfileHostPage = (props: Props) => {
                 Phòng {currentIndex + 1} / {totalRooms}
               </span>
               <div className="p-1 hover:bg-gray-100 rounded-lg transition-all duration-500 inline-block">
-                <a
+                <Link
                   className="font-bold underline text-black cursor-pointer"
-                  href="#"
+                  href={`/${locale}/room/${toSlugWithId(currentRoom.tenPhong, currentRoom.id)}`}
                 >
                   Xem thêm thông tin
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -301,11 +337,50 @@ const ProfileHostPage = (props: Props) => {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: 16, width: 16, fill: 'currentcolor' }}>
                 <path d="M28 6H17V4a2 2 0 0 0-2-2H3v28h2V18h10v2a2 2 0 0 0 2 2h11.12a1 1 0 0 0 .84-1.28L27.04 14l1.92-6.72A1 1 0 0 0 28 6z" />
               </svg>
-              <Link className="font-bold underline text-black" href="#">Báo cáo hồ sơ này</Link>
+              <Button className="font-bold underline text-black !bg-transparent !border-none !shadow-none !p-0" onClick={showModalWarning}>
+                Báo cáo hồ sơ này
+              </Button>
+
             </div>
           </section>
         </div>
       </div>
+      <Modal
+        open={isModalOpen}
+        onCancel={handleCancel}
+        footer={
+          <div className="flex justify-end">
+            <Button
+              type="primary"
+              danger
+              onClick={handleWarningOk}
+            >
+              OK
+            </Button>
+          </div>
+        }
+      >
+        <h3 className="font-bold text-2xl">Có chuyện gì vậy?</h3>
+        <p className="text-lg">Thông tin này sẽ chỉ được chia sẻ với Airbnb.</p>
+        <div className="flex flex-col items-end py-3">
+          <Radio.Group className="!w-full" onChange={onChange} value={value}>
+            <Space direction="vertical" className="!w-full">
+              <Radio className="!border-b !w-full !py-4 !text-lg" value={1}>
+                Tôi nghĩ họ đang lừa đảo hoặc gửi thư rác cho tôi
+              </Radio>
+              <Radio className="!border-b !w-full !py-4 !text-lg" value={2}>
+                Họ có thái độ xúc phạm
+              </Radio>
+              <Radio className="!border-b !w-full !pt-4 !pb-10 !text-lg" value={3}>
+                Lý do khác
+                {value === 3 ? (
+                  <Input style={{ maxWidth: 180, height: 35, marginInlineStart: 10 }} placeholder="Ghi lý do" />
+                ) : null}
+              </Radio>
+            </Space>
+          </Radio.Group>
+        </div>
+      </Modal>
     </div>
   )
 }

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem
+  }
+
+  html,
+  body {
+    scroll-behavior: smooth !important;
+  }
+}
+
+@layer base {
+
+  /* Hỗ trợ Chrome, Safari và Edge */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hỗ trợ Firefox */
+  .scrollbar-hide {
+    scrollbar-width: none;
+  }
+
+  .custom-cancel-button:hover {
+    border-color: red !important;
+    /* Đổi màu viền khi hover */
+    color: red !important;
+    /* Đổi màu chữ khi hover */
+  }
+}
+
+@font-face {
+  font-family: 'AirbnbCerealVF';
+  src: url('/fonts/AirbnbCerealVF.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

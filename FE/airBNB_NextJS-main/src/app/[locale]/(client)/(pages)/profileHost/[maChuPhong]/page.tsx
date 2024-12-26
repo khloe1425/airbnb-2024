@@ -257,7 +257,7 @@ const ProfileHostPage = (props: Props) => {
           </section>
 
           {/* Section nhà cho thuê */}
-          <section className="relative lg:px-6 rounded-lg">
+          {totalRooms > 0 && ( <section className="relative lg:px-6 rounded-lg">
             <div className="flex items-center justify-between">
               <h1 className="text-xl font-bold text-center">
                 Mục cho thuê của {hostJson?.tenChuPhong}
@@ -300,10 +300,9 @@ const ProfileHostPage = (props: Props) => {
 
             <div className="mt-4">
               <div className="mt-2 grid grid-cols-1 gap-4 transition-all duration-500">
-                {/* Hiển thị thông tin phòng */}
                 <div className="rounded-2xl space-y-4">
                   <Image
-                    src={currentRoom.hinhAnh || "/placeholder.jpg"}
+                    src={currentRoom.hinhAnh || "NewApt D1 - Cozy studio - NU apt - 500m Bui Vien!"}
                     alt={currentRoom.tenPhong}
                     className="rounded-lg w-full !h-64 object-cover"
                   />
@@ -330,7 +329,10 @@ const ProfileHostPage = (props: Props) => {
             </div>
 
             <hr className="border-gray-200 lg:px-6 px-4 my-10 block lg:hidden" />
-          </section>
+          </section> )}
+
+          
+
 
           <section className="lg:px-6 block lg:hidden">
             <div className="mt-4 flex items-center space-x-2">

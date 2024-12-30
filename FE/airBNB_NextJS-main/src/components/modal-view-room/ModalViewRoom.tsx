@@ -620,7 +620,7 @@ const ModalViewRoom: React.FC<Props> = ({
                       value={setLocationName(formRoom.values.maViTri)}
                       onChange={(
                         data: string,
-                        option: OptionSelectType | OptionSelectType[]
+                        option: OptionSelectType | OptionSelectType[] | undefined
                       ): void => {
                         if (option && !Array.isArray(option)) {
                           formRoom.setFieldValue(

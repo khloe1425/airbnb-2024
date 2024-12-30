@@ -311,7 +311,7 @@ const ModalViewLocation: React.FC<Props> = ({
                   value={formLocation.values.tinhThanh}
                   onChange={(
                     data: string,
-                    option: OptionSelectType | OptionSelectType[]
+                    option: OptionSelectType | OptionSelectType[] | undefined
                   ): void => {
                     if (option && !Array.isArray(option)) {
                       formLocation.setFieldValue("tinhThanh", option.label);
@@ -341,7 +341,7 @@ const ModalViewLocation: React.FC<Props> = ({
                   value={formLocation.values.tenViTri}
                   onChange={(
                     data: string,
-                    option: OptionSelectType | OptionSelectType[]
+                    option: OptionSelectType | OptionSelectType[] | undefined
                   ): void => {
                     if (option && !Array.isArray(option)) {
                       formLocation.setFieldValue("tenViTri", option.label);

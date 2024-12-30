@@ -187,7 +187,7 @@ const HostAdmin: React.FC = () => {
       ),
       filters: [
         { text: "ACTIVE", value: "ACTIVE" },
-        { text: "INACTIVE", value: "INACTIVE" },
+        { text: "DEACTIVE", value: "DEACTIVE" },
       ],
       onFilter: (value, record) => record.status === value,
     },
@@ -286,7 +286,7 @@ const HostAdmin: React.FC = () => {
                   <h1 className="font-bold">{item.tenChuPhong}</h1>
                   <p>{item.email}</p>
                   <p>
-                    {item.status === "INACTIVE" ? (
+                    {item.status === "DEACTIVE" ? (
                       <Tag color="red">{item.status}</Tag>
                     ) : (
                       <Tag color="green">{item.status}</Tag>
@@ -523,7 +523,7 @@ const HostAdmin: React.FC = () => {
             rules={[{ required: true, message: "Trạng thái không được để trống!" }]}>
             <Select>
               <Select.Option value="ACTIVE">ACTIVE</Select.Option>
-              <Select.Option value="INACTIVE">INACTIVE</Select.Option>
+              <Select.Option value="DEACTIVE">DEACTIVE</Select.Option>
             </Select>
           </Form.Item>
           <Row gutter={[16, 0]}>

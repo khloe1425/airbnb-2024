@@ -7,7 +7,7 @@ export interface Host {
     gioiTinh: boolean;
     ngaySinh: string;
     moTa: string;
-    status: "ACTIVE" | "INACTIVE";
+    status: "ACTIVE" | "DEACTIVE";
 }
 
 export const host: Host[] = [

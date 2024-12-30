@@ -1,4 +1,5 @@
 import { reqPaginationType } from "@/types/req-pagination/reqPaginationType.type";
+import { ReqType } from "@/types/req/reqType.type";
 import { RoomType } from "@/types/room/roomType.type";
 import { httpClient } from "@/utils/setting/setting";
 import { AxiosResponse } from "axios";
@@ -10,5 +11,10 @@ export const getRoomsAsync = async (
   const res: AxiosResponse = await httpClient.get(
     `/api/phong-thue/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=${pageSize}`
   );
+  return res.data.content;
+};
+
+export const getAllRoomAsync = async (): Promise<RoomType[]> => {
+  const res: AxiosResponse = await httpClient.get(`/api/phong-thue`);
   return res.data.content;
 };

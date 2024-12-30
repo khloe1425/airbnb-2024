@@ -10,6 +10,7 @@ import { deleteLocationAsync } from "@/services/delete-location/deleteLocation.s
 import { getLocationsPaginationAsync } from "@/services/locations-pagination/locationsPagination.service";
 import { LocationType } from "@/types/location/locationType.type";
 import { NotifiType } from "@/types/notifi/notifi.type";
+import { HighlightText } from "@/utils/highLightText/HighlightText";
 import {
   getCurrentDateTime,
   getFormattedDateTime,
@@ -227,12 +228,13 @@ const Locations: React.FC = () => {
     },
     render: (text) =>
       searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ""}
-        />
+        // <Highlighter
+        //   highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+        //   searchWords={[searchText]}
+        //   autoEscape
+        //   textToHighlight={text ? text.toString() : ""}
+        // />
+        <HighlightText text={text} searchText={searchText}></HighlightText>
       ) : (
         text
       ),

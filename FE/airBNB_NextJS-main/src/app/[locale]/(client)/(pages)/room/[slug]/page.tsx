@@ -1,4 +1,5 @@
 import Comments from "@/components/comments/comments";
+import RelatedRoom from "@/components/related-room/relatedRoom";
 import OptionBookingContainer from "@/components/option-booking-container/OptionBookingContainer";
 import { getRoomDetailAsync } from "@/services/room-detail/roomDetail.service";
 import { RoomType } from "@/types/room/roomType.type";
@@ -26,7 +27,6 @@ export async function generateMetadata({ params }: Props) {
   const { locale } = params;
   const id = extractId(params.slug);
   const roomDetail: RoomType = await getRoomDetailAsync(Number(id));
-
   return {
     title: `Chi tiết phòng - ${roomDetail.tenPhong}`,
     description: `Xem chi tiết căn phòng ${roomDetail.tenPhong} ở ${roomDetail.moTa}. Thích hợp cho ${roomDetail.khach} khách với ${roomDetail.phongNgu} phòng ngủ và ${roomDetail.phongTam} phòng tắm.`,
@@ -55,6 +55,7 @@ export async function generateMetadata({ params }: Props) {
 const RoomDetail: React.FC<Props> = async ({ params }) => {
   const id = extractId(params.slug);
   const data: RoomType = await getRoomDetailAsync(Number(id));
+  const roomDetail: RoomType = await getRoomDetailAsync(Number(id));
   const { locale } = params;
 
   return (
@@ -326,6 +327,15 @@ const RoomDetail: React.FC<Props> = async ({ params }) => {
       {/* Binh luan */}
       <div className="mt-5">
         <Comments id={data.id} />
+      </div>
+
+      {/* Phong Lien Quan */}
+      <div className="mt-5 py-5 border-t">
+        <h3 className="font-bold text-xl mb-5">
+          {locale === "vi" ? "Phòng liên quan" : "Amenities"}
+        </h3>
+        {/* <RelatedRoom /> */}
+        <RelatedRoom viTri={roomDetail.maViTri} maPhong={roomDetail.id} />
       </div>
     </div>
   );

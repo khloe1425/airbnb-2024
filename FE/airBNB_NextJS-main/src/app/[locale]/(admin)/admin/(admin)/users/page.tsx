@@ -42,6 +42,7 @@ import {
   getFormattedDateTime,
 } from "@/utils/method/method";
 import { useLocale } from "next-intl";
+import { HighlightText } from "@/utils/highLightText/HighlightText";
 
 type DataIndex = keyof User;
 
@@ -221,12 +222,13 @@ const UserPage: React.FC = () => {
     },
     render: (text) =>
       searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ""}
-        />
+        // <Highlighter
+        //   highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+        //   searchWords={[searchText]}
+        //   autoEscape
+        //   textToHighlight={text ? text.toString() : ""}
+        // />
+        <HighlightText text={text} searchText={searchText}></HighlightText>
       ) : (
         text
       ),

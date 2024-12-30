@@ -10,6 +10,7 @@ import { deleteRoomAsync } from "@/services/delete-room/deleteRoom.service";
 import { getRoomsPaginationAsync } from "@/services/rooms-pagination/roomsPagination.service";
 import { NotifiType } from "@/types/notifi/notifi.type";
 import { RoomType } from "@/types/room/roomType.type";
+import { HighlightText } from "@/utils/highLightText/HighlightText";
 import {
   convertUSDToVND,
   getCurrentDateTime,
@@ -235,12 +236,13 @@ const Rooms: React.FC = () => {
     },
     render: (text) =>
       searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ""}
-        />
+        // <Highlighter
+        //   highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+        //   searchWords={[searchText]}
+        //   autoEscape
+        //   textToHighlight={text ? text.toString() : ""}
+        // />
+        <HighlightText text={text} searchText={searchText}></HighlightText>
       ) : (
         text
       ),
